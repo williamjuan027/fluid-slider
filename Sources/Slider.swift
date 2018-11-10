@@ -25,7 +25,7 @@ private func isAnimationAllowed() -> Bool {
     return !isSimulator && !ProcessInfo.processInfo.isLowPowerModeEnabled && !UIAccessibility.isReduceMotionEnabled && !isUnderHighload
 }
 
-open class Slider : UIControl {
+@objc public class Slider : UIControl {
     
     open var locale: Locale? {
         didSet {
@@ -78,7 +78,7 @@ open class Slider : UIControl {
     
     // MARK: - Value
     
-    open var fraction: CGFloat = 0 {
+    @objc public var fraction: CGFloat = 0 {
         didSet {
             updateValueViewText()
 			layoutValueView()
@@ -91,7 +91,7 @@ open class Slider : UIControl {
 		}
 	}
     
-    open var attributedTextForFraction: (CGFloat) -> (NSAttributedString) = { fraction in
+    @objc public var attributedTextForFraction: (CGFloat) -> (NSAttributedString) = { fraction in
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 2
         formatter.maximumIntegerDigits = 0
@@ -99,7 +99,7 @@ open class Slider : UIControl {
         return NSAttributedString(string: string)
     }
 
-	open var valueViewMargin: CGFloat = ValueView.kLayoutMarginInset {
+	@objc public var valueViewMargin: CGFloat = ValueView.kLayoutMarginInset {
 		didSet {
 			if valueViewMargin < ValueView.kLayoutMarginInset {
 				valueViewMargin = ValueView.kLayoutMarginInset
@@ -110,7 +110,7 @@ open class Slider : UIControl {
     
     private let valueView = ValueView()
     
-    open var valueViewColor: UIColor? {
+    @objc public var valueViewColor: UIColor? {
         didSet {
             updateValueViewColor()
         }
@@ -138,25 +138,25 @@ open class Slider : UIControl {
 	private let minimumImageView = UIImageView()
 	private let maximumImageView = UIImageView()
 
-	open var imagesMargin: CGFloat = 10 {
+	@objc public var imagesMargin: CGFloat = 10 {
 		didSet {
 			layoutImageViews()
 		}
 	}
 
-	open var imagesColor: UIColor? {
+	@objc public var imagesColor: UIColor? {
 		didSet {
 			minimumImageView.tintColor = imagesColor
 			maximumImageView.tintColor = imagesColor
 		}
 	}
 
-	open func setMinimumImage(_ image: UIImage?) {
+	@objc public func setMinimumImage(_ image: UIImage?) {
 		minimumImageView.image = image?.withRenderingMode(.alwaysTemplate)
 		layoutImageViews()
 	}
 
-	open func setMaximumImage(_ image: UIImage?) {
+	@objc public func setMaximumImage(_ image: UIImage?) {
 		maximumImageView.image = image?.withRenderingMode(.alwaysTemplate)
 		layoutImageViews()
 	}
@@ -166,18 +166,18 @@ open class Slider : UIControl {
     private let minimumLabel = UILabel()
     private let maximumLabel = UILabel()
 
-	open var labelsMargin: CGFloat = 10 {
+	@objc public var labelsMargin: CGFloat = 10 {
 		didSet {
 			layoutLabelsText()
 		}
 	}
 
-    open func setMinimumLabelAttributedText(_ attributedText: NSAttributedString?) {
+    @objc public func setMinimumLabelAttributedText(_ attributedText: NSAttributedString?) {
         minimumLabel.attributedText = attributedText
         setNeedsLayout()
     }
     
-    open func setMaximumLabelAttributedText(_ attributedText: NSAttributedString?) {
+    @objc public func setMaximumLabelAttributedText(_ attributedText: NSAttributedString?) {
         maximumLabel.attributedText = attributedText
         setNeedsLayout()
     }
@@ -186,32 +186,32 @@ open class Slider : UIControl {
     
     private let backgroundImageView = UIImageView()
 
-	open var contentViewCornerRadius: CGFloat = 8 {
+	@objc public var contentViewCornerRadius: CGFloat = 8 {
 		didSet {
 			layoutBackgroundImage()
 		}
 	}
     
-    open var contentViewColor: UIColor? {
+    @objc public var contentViewColor: UIColor? {
         didSet {
             updateValueViewColor()
             setNeedsLayout()
         }
     }
     
-    open var shadowOffset: CGSize = .zero {
+    @objc public var shadowOffset: CGSize = .zero {
         didSet {
             setNeedsLayout()
         }
     }
 
-    open var shadowBlur: CGFloat = 0 {
+    @objc public var shadowBlur: CGFloat = 0 {
         didSet {
             setNeedsLayout()
         }
     }
     
-    open var shadowColor: UIColor? {
+    @objc public var shadowColor: UIColor? {
         didSet {
             setNeedsLayout()
         }
